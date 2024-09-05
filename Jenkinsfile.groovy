@@ -39,4 +39,14 @@ pipeline {
             }
         }
     }
-}
+    post {
+                always {
+                    emailext(
+                        to: 's223839258@deakin.edu.au',
+                        subject: "Test Email Notification - ${currentBuild.currentResult}",
+                        body: "This is a test email. The build has ${currentBuild.currentResult}.",
+                        attachLog: true
+                    )
+                }
+            }
+        }
