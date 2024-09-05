@@ -45,14 +45,14 @@ pipeline {
             post {
                 success {
                     archiveArtifacts artifacts: 'security_scan.log'
-                    emailext to: 'vinoj.prasath23@gmail.com',
+                    mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Security Scan - Success",
                              body: "The Security Scan stage has passed.",
                              attachmentsPattern: 'security_scan.log'
                 }
                 failure {
                     archiveArtifacts artifacts: 'security_scan.log'
-                    emailext to: 'vinoj.prasath23@gmail.com',
+                    mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Security Scan - Failed",
                              body: "The Security Scan stage has failed.",
                              attachmentsPattern: 'security_scan.log'
@@ -77,7 +77,7 @@ pipeline {
     }
     post {
         always {
-            emailext to: 'vinoj.prasath23@gmail.com',
+            mail to: 'vinoj.prasath23@gmail.com',
                      subject: "Pipeline Success",
                      body: "All stages are running successfully"
         }
