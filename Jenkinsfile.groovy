@@ -42,7 +42,7 @@ pipeline {
     post {
                 always {
                     emailext(
-                        to: 's223839258@deakin.edu.au',
+                        to: 'vinoj.prasath23@gmail.com',
                         subject: "Test Email Notification - ${currentBuild.currentResult}",
                         body: "This is a test email. The build has ${currentBuild.currentResult}.",
                         attachLog: true
