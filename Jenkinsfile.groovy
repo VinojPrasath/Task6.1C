@@ -17,14 +17,14 @@ pipeline {
             post {
                 success {
                     archiveArtifacts artifacts: 'unit_test_results.log'
-                    emailext to: 'vinoj.prasath23@gmail.com',
+                    mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Unit and Integration Testing - Success",
                              body: "The Unit and Integration Testing stage has passed.",
                              attachmentsPattern: 'unit_test_results.log'
                 }
                 failure {
                     archiveArtifacts artifacts: 'unit_test_results.log'
-                    emailext to: 'vinoj.prasath23@gmail.com',
+                    mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Unit and Integration Testing - Failed",
                              body: "The Unit and Integration Testing stage has failed.",
                              attachmentsPattern: 'unit_test_results.log'
