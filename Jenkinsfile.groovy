@@ -18,14 +18,13 @@ pipeline {
                     archiveArtifacts artifacts: 'unit_test_results.log'
                     mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Unit and Integration Testing - Success",
-                             body: "The Unit and Integration Testing stage has passed.",
-                             
+                             body: "The Unit and Integration Testing stage has passed."            
                 }
                 failure {
                     archiveArtifacts artifacts: 'unit_test_results.log'
                     mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Unit and Integration Testing - Failed",
-                             body: "The Unit and Integration Testing stage has failed.",
+                             body: "The Unit and Integration Testing stage has failed."
                              
                 }
             }
@@ -45,14 +44,14 @@ pipeline {
                     archiveArtifacts artifacts: 'security_scan.log'
                     mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Security Scan - Success",
-                             body: "The Security Scan stage has passed.",
+                             body: "The Security Scan stage has passed."
                              
                 }
                 failure {
                     archiveArtifacts artifacts: 'security_scan.log'
                     mail to: 'vinoj.prasath23@gmail.com',
                              subject: "Security Scan - Failed",
-                             body: "The Security Scan stage has failed.",
+                             body: "The Security Scan stage has failed."
                              
                 }
             }
