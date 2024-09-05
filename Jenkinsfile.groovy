@@ -47,7 +47,7 @@ pipeline {
                  attachLog: true
         }
         failure {
-            mail to: 'developer@example.com',
+            mail to: '223839258@deakin.edu.au',
                  subject: "Pipeline Failure: ${currentBuild.fullDisplayName}",
                  body: "The pipeline has failed. Please check the attached logs.",
                  attachLog: true
