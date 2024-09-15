@@ -16,8 +16,7 @@ pipeline {
                 success {
                     archiveArtifacts artifacts: 'unit_test_results.log'
                     emailext subject: "Unit and Integration Testing - Success",
-                             body: "The Unit and Integration Testing stage has passed. \nCheck the results: ${http://localhost:8080/job/Task6.1C_Pipeline/25/
-}artifact/unit_test_results.log",
+                             body: "The Unit and Integration Testing stage has passed.",
                              to: 'vinoj.prasath23@gmail.com',
                              attachmentsPattern: 'unit_test_results.log',
                              attachLog: true
@@ -25,8 +24,7 @@ pipeline {
                 failure {
                     archiveArtifacts artifacts: 'unit_test_results.log'
                     emailext subject: "Unit and Integration Testing - Failed",
-                             body: "The Unit and Integration Testing stage has failed. \nCheck the results: ${http://localhost:8080/job/Task6.1C_Pipeline/25/
-}artifact/unit_test_results.log",
+                             body: "The Unit and Integration Testing stage has failed.",
                              to: 'vinoj.prasath23@gmail.com',
                              attachmentsPattern: 'unit_test_results.log',
                              attachLog: true
@@ -46,8 +44,7 @@ pipeline {
                 success {
                     archiveArtifacts artifacts: 'security_scan.log'
                     emailext subject: "Security Scan - Success",
-                             body: "The Security Scan stage has passed. \nCheck the results: ${http://localhost:8080/job/Task6.1C_Pipeline/25/
-}artifact/security_scan.log",
+                             body: "The Security Scan stage has passed.",
                              to: 'vinoj.prasath23@gmail.com',
                              attachmentsPattern: 'security_scan.log',
                              attachLog: true
@@ -55,8 +52,7 @@ pipeline {
                 failure {
                     archiveArtifacts artifacts: 'security_scan.log'
                     emailext subject: "Security Scan - Failed",
-                             body: "The Security Scan stage has failed. \nCheck the results: ${http://localhost:8080/job/Task6.1C_Pipeline/25/
-}artifact/security_scan.log",
+                             body: "The Security Scan stage has failed.",
                              to: 'vinoj.prasath23@gmail.com',
                              attachmentsPattern: 'security_scan.log',
                              attachLog: true
@@ -81,9 +77,8 @@ pipeline {
     }
     post {
         always {
-            emailext subject: "Pipeline Completion Notification",
-                     body: "All stages have been executed successfully. \nCheck the full build log: ${http://localhost:8080/job/Task6.1C_Pipeline/25/
-}console",
+            emailext subject: "Pipeline Success",
+                     body: "All stages are running successfully.",
                      to: 'vinoj.prasath23@gmail.com',
                      attachLog: true
         }
