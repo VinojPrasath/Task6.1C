@@ -11,21 +11,23 @@ pipeline {
             steps {
                 echo 'Running unit test with Junit'
                 echo 'Running integration test using TestNG'
-                
             }
             post {
                 success {
                     archiveArtifacts artifacts: 'unit_test_results.log'
-                    mail to: 'vinoj.prasath23@gmail.com',
-                             subject: "Unit and Integration Testing - Success",
-                             body: "The Unit and Integration Testing stage has passed."            
+                    emailext subject: "Unit and Integration Testing - Success",
+                             body: "The Unit and Integration Testing stage has passed.",
+                             to: 'vinoj.prasath23@gmail.com',
+                             attachLog: true,
+                             attachmentsPattern: 'unit_test_results.log'
                 }
                 failure {
                     archiveArtifacts artifacts: 'unit_test_results.log'
-                    mail to: 'vinoj.prasath23@gmail.com',
-                             subject: "Unit and Integration Testing - Failed",
-                             body: "The Unit and Integration Testing stage has failed."
-                             
+                    emailext subject: "Unit and Integration Testing - Failed",
+                             body: "The Unit and Integration Testing stage has failed.",
+                             to: 'vinoj.prasath23@gmail.com',
+                             attachLog: true,
+                             attachmentsPattern: 'unit_test_results.log'
                 }
             }
         }
@@ -37,22 +39,23 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Perform Security Scan using OWASP ZAP'
-               
             }
             post {
                 success {
                     archiveArtifacts artifacts: 'security_scan.log'
-                    mail to: 'vinoj.prasath23@gmail.com',
-                             subject: "Security Scan - Success",
-                             body: "The Security Scan stage has passed."
-                             
+                    emailext subject: "Security Scan - Success",
+                             body: "The Security Scan stage has passed.",
+                             to: 'vinoj.prasath23@gmail.com',
+                             attachLog: true,
+                             attachmentsPattern: 'security_scan.log'
                 }
                 failure {
                     archiveArtifacts artifacts: 'security_scan.log'
-                    mail to: 'vinoj.prasath23@gmail.com',
-                             subject: "Security Scan - Failed",
-                             body: "The Security Scan stage has failed."
-                             
+                    emailext subject: "Security Scan - Failed",
+                             body: "The Security Scan stage has failed.",
+                             to: 'vinoj.prasath23@gmail.com',
+                             attachLog: true,
+                             attachmentsPattern: 'security_scan.log'
                 }
             }
         }
@@ -74,9 +77,10 @@ pipeline {
     }
     post {
         always {
-            mail to: 'vinoj.prasath23@gmail.com',
-                     subject: "Pipeline Success",
-                     body: "All stages are running successfully"
+            emailext subject: "Pipeline Success",
+                     body: "All stages are running successfully.",
+                     to: 'vinoj.prasath23@gmail.com',
+                     attachLog: true
         }
     }
 }
