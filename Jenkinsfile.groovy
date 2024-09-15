@@ -14,18 +14,30 @@ pipeline {
             }
             post {
                 success {
-                    emailext subject: "Unit and Integration Testing - Success",
-                             body: "The Unit and Integration Testing stage has passed.",
-                             to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'unit_test_results.log',
-                             attachLog: true
+                    script {
+                        if (fileExists('unit_test_results.log')) {
+                            emailext subject: "Unit and Integration Testing - Success",
+                                     body: "The Unit and Integration Testing stage has passed.",
+                                     to: 'vinoj.prasath23@gmail.com',
+                                     attachmentsPattern: 'unit_test_results.log',
+                                     attachLog: true
+                        } else {
+                            echo "unit_test_results.log not found!"
+                        }
+                    }
                 }
                 failure {
-                    emailext subject: "Unit and Integration Testing - Failed",
-                             body: "The Unit and Integration Testing stage has failed.",
-                             to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'unit_test_results.log',
-                             attachLog: true
+                    script {
+                        if (fileExists('unit_test_results.log')) {
+                            emailext subject: "Unit and Integration Testing - Failed",
+                                     body: "The Unit and Integration Testing stage has failed.",
+                                     to: 'vinoj.prasath23@gmail.com',
+                                     attachmentsPattern: 'unit_test_results.log',
+                                     attachLog: true
+                        } else {
+                            echo "unit_test_results.log not found!"
+                        }
+                    }
                 }
             }
         }
@@ -40,18 +52,30 @@ pipeline {
             }
             post {
                 success {
-                    emailext subject: "Security Scan - Success",
-                             body: "The Security Scan stage has passed.",
-                             to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'security_scan.log',
-                             attachLog: true
+                    script {
+                        if (fileExists('security_scan.log')) {
+                            emailext subject: "Security Scan - Success",
+                                     body: "The Security Scan stage has passed.",
+                                     to: 'vinoj.prasath23@gmail.com',
+                                     attachmentsPattern: 'security_scan.log',
+                                     attachLog: true
+                        } else {
+                            echo "security_scan.log not found!"
+                        }
+                    }
                 }
                 failure {
-                    emailext subject: "Security Scan - Failed",
-                             body: "The Security Scan stage has failed.",
-                             to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'security_scan.log',
-                             attachLog: true
+                    script {
+                        if (fileExists('security_scan.log')) {
+                            emailext subject: "Security Scan - Failed",
+                                     body: "The Security Scan stage has failed.",
+                                     to: 'vinoj.prasath23@gmail.com',
+                                     attachmentsPattern: 'security_scan.log',
+                                     attachLog: true
+                        } else {
+                            echo "security_scan.log not found!"
+                        }
+                    }
                 }
             }
         }
@@ -72,9 +96,15 @@ pipeline {
         }
     }
     post {
-        always {
+        success {
             emailext subject: "Pipeline Success",
-                     body: "All stages are running successfully.",
+                     body: "All stages ran successfully.",
+                     to: 'vinoj.prasath23@gmail.com',
+                     attachLog: true
+        }
+        failure {
+            emailext subject: "Pipeline Failed",
+                     body: "One or more stages have failed. Please check the Jenkins logs.",
                      to: 'vinoj.prasath23@gmail.com',
                      attachLog: true
         }
