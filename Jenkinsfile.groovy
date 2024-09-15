@@ -17,14 +17,14 @@ pipeline {
                     emailext subject: "Unit and Integration Testing - Success",
                              body: "The Unit and Integration Testing stage has passed.",
                              to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'unit_test_results.log',
+                             attachmentsPattern: 'Task6.1C_Pipeline/unit_test_results.log',
                              attachLog: true
                 }
                 failure {
                     emailext subject: "Unit and Integration Testing - Failed",
                              body: "The Unit and Integration Testing stage has failed.",
                              to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'unit_test_results.log',
+                             attachmentsPattern: 'Task6.1C_Pipeline/unit_test_results.log',
                              attachLog: true
                 }
             }
@@ -43,14 +43,14 @@ pipeline {
                     emailext subject: "Security Scan - Success",
                              body: "The Security Scan stage has passed.",
                              to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'security_scan.log',
+                             attachmentsPattern: 'Task6.1C_Pipeline/security_scan.log',
                              attachLog: true
                 }
                 failure {
                     emailext subject: "Security Scan - Failed",
                              body: "The Security Scan stage has failed.",
                              to: 'vinoj.prasath23@gmail.com',
-                             attachmentsPattern: 'security_scan.log',
+                             attachmentsPattern: 'Task6.1C_Pipeline/security_scan.log',
                              attachLog: true
                 }
             }
