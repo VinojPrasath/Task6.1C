@@ -73,10 +73,16 @@ pipeline {
         }
     }
     post {
-        always {
-            mail to: 'vinoj.prasath23@gmail.com',
-                     subject: "Pipeline Success",
-                     body: "All stages are running successfully"
+    always {
+        script {
+            try {
+                emailext subject: "Pipeline Success",
+                         body: "All stages are running successfully.",
+                         to: 'vinoj.prasath23@gmail.com',
+                         attachLog: true
+            } catch (Exception e) {
+                echo "Failed to send email: ${e.message}"
+            }
         }
     }
 }
