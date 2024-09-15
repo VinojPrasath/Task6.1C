@@ -14,7 +14,6 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: 'unit_test_results.log'
                     emailext subject: "Unit and Integration Testing - Success",
                              body: "The Unit and Integration Testing stage has passed.",
                              to: 'vinoj.prasath23@gmail.com',
@@ -22,7 +21,6 @@ pipeline {
                              attachLog: true
                 }
                 failure {
-                    archiveArtifacts artifacts: 'unit_test_results.log'
                     emailext subject: "Unit and Integration Testing - Failed",
                              body: "The Unit and Integration Testing stage has failed.",
                              to: 'vinoj.prasath23@gmail.com',
@@ -42,7 +40,6 @@ pipeline {
             }
             post {
                 success {
-                    archiveArtifacts artifacts: 'security_scan.log'
                     emailext subject: "Security Scan - Success",
                              body: "The Security Scan stage has passed.",
                              to: 'vinoj.prasath23@gmail.com',
@@ -50,7 +47,6 @@ pipeline {
                              attachLog: true
                 }
                 failure {
-                    archiveArtifacts artifacts: 'security_scan.log'
                     emailext subject: "Security Scan - Failed",
                              body: "The Security Scan stage has failed.",
                              to: 'vinoj.prasath23@gmail.com',
