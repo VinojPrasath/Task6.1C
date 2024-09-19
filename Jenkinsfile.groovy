@@ -153,7 +153,7 @@ pipeline {
                 subject: 'Build Successful',
                 body: '''<p>Build completed successfully.</p>
                          <p>See attached logs for more details.</p>''',
-                to: 'gpranav2901@gmail.com',
+                to: 'vinoj.prasath23@gmail.com',
                 attachmentsPattern: 'build.log'
             )
         }
@@ -162,7 +162,7 @@ pipeline {
                 subject: 'Build Failed',
                 body: '''<p>Build failed. Please check the logs.</p>
                          <p>See attached logs for more details.</p>''',
-                to: 'gpranav2901@gmail.com',
+                to: 'vinoj.prasath23@gmail.com',
                 attachmentsPattern: 'build.log'
             )
         }
