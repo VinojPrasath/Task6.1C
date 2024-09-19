@@ -89,18 +89,9 @@ pipeline {
             }
             steps {
                 script {
-                    try {
-                        // Simulate deployment to staging
-                        bat 'echo Deploying to staging >> build.log'
-                    } catch (Exception e) {
-                        echo "Staging deployment failed: ${e.getMessage()}"
-                        bat 'echo Staging deployment failed: ${e.getMessage()} >> build.log'
-                        currentBuild.result = 'FAILURE'
-                        error("Staging deployment failed")
-                    }
+                    bat 'echo Deploying to staging >> build.log'
                 }
             }
-        }
         
         stage('Integration Tests on Staging') {
             when {
@@ -122,25 +113,13 @@ pipeline {
         }
         
         stage('Deploy to Production') {
-            when {
-                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
-            }
             steps {
-                script {
-                    try {
-                        // Simulate deployment to production
-                        bat 'echo Deploying to production >> build.log'
-                    } catch (Exception e) {
-                        echo "Production deployment failed: ${e.getMessage()}"
-                        bat 'echo Production deployment failed: ${e.getMessage()} >> build.log'
-                        currentBuild.result = 'FAILURE'
-                        error("Production deployment failed")
-                    }
-                }
-            }
+                bat 'echo Deploying to production '
+                echo "Production deployment failed "
+            }|
         }
-    }
-
+                      
+    
     post {
         always {
             script {
