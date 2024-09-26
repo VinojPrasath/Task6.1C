@@ -142,30 +142,20 @@ pipeline {
     }
 
     post {
-        always {
-            script {
-                // Collect and archive logs
-                archiveArtifacts artifacts: 'build.log', allowEmptyArchive: true
-            }
-        }
-        success {
-            emailext(
-                subject: 'Build Successful',
-                body: '''<p>Build completed successfully.</p>
-                         <p>See attached logs for more details.</p>''',
-                to: 'vinoj.prasath23@gmail.com',
-                attachmentsPattern: 'build.log'
-            )
-        }
-        failure {
-            emailext(
-                subject: 'Build Failed',
-                body: '''<p>Build failed. Please check the logs.</p>
-                         <p>See attached logs for more details.</p>''',
-                to: 'vinoj.prasath23@gmail.com',
-                attachmentsPattern: 'build.log'
-            )
-        }
+    success {
+        emailext attachLog: true,
+                 to: 'vinoj.prasath23@gmail.com',
+                 subject: 'SUCCESS: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]',
+                 body: "The job ${env.JOB_NAME} was successful. Check the details at ${env.BUILD_URL}."
+    }
+    failure {
+        emailext attachLog: true,
+                 to: 'vinoj.prasath23@gmail.com',
+                 subject: 'FAILURE: Job ${env.JOB_NAME} [${env.BUILD_NUMBER}]',
+                 body: "The job ${env.JOB_NAME} failed. Check the details at ${env.BUILD_URL}."
+    }
+}
+
     }
 }
  
